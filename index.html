@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaimish Kachhadiya Portfolio</title>
+  <style>
+    :root {
+      --primary-color: #ff4d4d;
+      --secondary-color: #1a1a1a;
+      --accent-color: #ffffff;
+      --border-color: #333;
+      --font-family: 'Poppins', sans-serif;
+      --skill-shadow: rgba(255, 77, 77, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--secondary-color);
+      color: var(--accent-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    section {
+      position: relative;
+      padding: 60px 30px;
+      margin: 20px 0;
+      border-bottom: 1px solid var(--border-color);
+      animation: fadeIn 1s ease-in-out;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.3),
+        rgba(0, 123, 255, 0.3)
+      );
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    section::before,
+    section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: white;
+      opacity: 0.3;
+    }
+
+    section::before {
+      left: 20px;
+      box-shadow: 10px 0 white;
+    }
+
+    section::after {
+      right: 20px;
+      box-shadow: -10px 0 white;
+    }
+
+    .section-header {
+      position: relative;
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px 0;
+    }
+
+    .title-box {
+      display: inline-block;
+      position: relative;
+      padding: 10px 40px;
+      border: 2px solid var(--primary-color);
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .ball {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      z-index: 2;
+      opacity: 1;
+      animation-duration: 4s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 24px rgba(255, 255, 255, 0.5);
+    }
+
+    .ball::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 50px;
+      background: linear-gradient(to bottom,
+        rgba(255, 0, 128, 0.7),
+        rgba(0, 255, 255, 0.6),
+        rgba(255, 255, 0, 0.5),
+        transparent
+      );
+      filter: blur(6px);
+      border-radius: 20px;
+      z-index: -1;
+      animation: trailWave 1s infinite ease-in-out;
+    }
+
+    @keyframes trailWave {
+      0% { height: 45px; opacity: 0.9; }
+      50% { height: 60px; opacity: 0.6; }
+      100% { height: 45px; opacity: 0.9; }
+    }
+
+    h1, h3 {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-weight: 300;
+    }
+
+    .hero, .about, .education, .interests, .projects, .branding, .social-media, .photography, .ux-ui, .contact, .thank-you {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-image {
+      flex: 0 0 300px;
+      position: relative;
+    }
+
+    .hero-image::before,
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: white;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    .hero-image::before {
+      left: 25%;
+    }
+
+    .hero-image::after {
+      left: 75%;
+    }
+
+    .hero img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 10px;
+      object-fit: cover;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      filter: brightness(0.98) contrast(1.05);
+    }
+
+    .hero img:hover {
+      transform: scale(1.03) rotate(-1deg);
+      box-shadow: 0 8px 30px rgba(255, 77, 77, 0.4);
+      filter: brightness(1) contrast(1.1) saturate(1.1);
+      border-color: rgba(255, 77, 77, 0.5);
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100px;
+    }
+
+    .skill-icon-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      width: 80px;
+      height: 80px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px var(--skill-shadow);
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .skill-icon-container:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px var(--skill-shadow);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .skill-icon {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      transition: all 0.3s ease;
+    }
+
+    .skill-icon-container:hover .photoshop-icon {
+      filter: drop-shadow(0 0 8px rgba(49, 168, 255, 0.7));
+    }
+    
+    .skill-icon-container:hover .illustrator-icon {
+      filter: drop-shadow(0 0 8px rgba(255, 153, 0, 0.7));
+    }
+    
+    .skill-icon-container:hover .coreldraw-icon {
+      filter: drop-shadow(0 0 8px rgba(247, 83, 54, 0.7));
+    }
+    
+    .skill-icon-container:hover .figma-icon {
+      filter: drop-shadow(0 0 8px rgba(162, 89, 255, 0.7));
+    }
+    
+    .skill-icon-container:hover .premierepro-icon {
+      filter: drop-shadow(0 0 8px rgba(234, 76, 137, 0.7));
+    }
+
+    .skill-name {
+      font-size: 0.9em;
+      text-align: center;
+      color: var(--accent-color);
+      font-weight: 500;
+    }
+
+    /* Updated Image Grid Styles */
+    .project-grid, .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    /* Updated Image Styling */
+    .project-grid img,
+    .image-grid img {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      filter: brightness(0.95) contrast(1.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      /*background: #fff;*/
+    }
+
+    /* Special styling for UI/UX images to show full image */
+    .ux-ui .image-grid img {
+      object-fit: contain;
+      /*background: #2a2a2a;*/
+      padding: 10px;
+    }
+
+    /* Regular styling for other images (cover for artistic effect) */
+    .project-grid img {
+      object-fit: contain;
+    }
+
+    /* Polaroid adjustments */
+    /*.polaroid {
+      /*background: white;
+      padding: 15px 15px 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: rotate(-2deg);
+      transition: all 0.3s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }*/
+
+    .polaroid img {
+      flex-grow: 1;
+    }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .polaroid:nth-child(even) {
+      transform: rotate(2deg);
+    }
+
+    .polaroid:nth-child(even):hover {
+      transform: rotate(0deg) scale(1.05);
+    }
+
+    .project-button {
+      background: var(--accent-color);
+      color: var(--secondary-color);
+      padding: 12px 24px;
+      margin: 10px 10px 0 0;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-button:hover {
+      background: var(--primary-color);
+      color: #000;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(255, 77, 77, 0.4);
+    }
+
+    .contact-info {
+      font-size: 1.1em;
+      text-align: center;
+    }
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+   .thank-you {
+  text-align: center;
+  position: relative;
+  padding: 60px 0;
+}
+
+.thank-you h2 {
+  display: inline-block;
+  font-size: 5em;
+  color: var(--accent-color);
+  position: relative;
+  z-index: 1;
+}
+
+/* FIXED lines */
+.thank-you::before,
+.thank-you::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+}
+
+.thank-you::before {
+  top: 0;
+}
+
+.thank-you::after {
+  bottom: 0;
+}
+
+    @keyframes floatRandom1 {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(15px, -10px); }
+      40%  { transform: translate(-10px, 20px); }
+      60%  { transform: translate(20px, 5px); }
+      80%  { transform: translate(-5px, -15px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes floatRandom2 {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(-20px, 10px); }
+      50%  { transform: translate(15px, -10px); }
+      75%  { transform: translate(-10px, 5px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes floatRandom3 {
+      0%   { transform: translate(0, 0); }
+      15%  { transform: translate(10px, 10px); }
+      30%  { transform: translate(-15px, -10px); }
+      45%  { transform: translate(5px, 15px); }
+      60%  { transform: translate(-10px, 5px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes colorShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes trailWave {
+      0% { height: 40px; opacity: 1; }
+      50% { height: 60px; opacity: 0.7; }
+      100% { height: 40px; opacity: 1; }
+    }
+
+    @keyframes moveBall1 {
+      0% { transform: translate(0, 0); }
+      25% { transform: translate(30px, 10px); }
+      50% { transform: translate(15px, 20px); }
+      75% { transform: translate(5px, 10px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes moveBall2 {
+      0% { transform: translate(25px, 10px); }
+      25% { transform: translate(10px, 5px); }
+      50% { transform: translate(20px, 15px); }
+      75% { transform: translate(15px, 5px); }
+      100% { transform: translate(25px, 10px); }
+    }
+
+    @keyframes upDownLine1 {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(20px); }
+    }
+
+    @keyframes upDownLine2 {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .hero-image {
+        margin-bottom: 30px;
+      }
+      
+      .project-grid, .image-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .project-grid img,
+      .image-grid img {
+        height: 200px;
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-image">
+      <img src="work/034.JPG" alt="Jaimish Kachhadiya">
+    </div>
+    <div class="hero-content">
+      <h1>JAIMISH KACHHADIYA</h1>
+      <p>Graphic Designer & Digital Artist</p>
+      <div class="about-me-content">
+        <h3>About Me</h3>
+        <p>With over three years of professional experience, I specialize in digital art, branding, and UI/UX design, delivering visually stunning solutions that captivate and inspire. I transform ideas into compelling visual narratives.</p>
+        <p>My creative journey combines technical expertise with artistic vision to create memorable brand experiences and engaging digital interfaces.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="education">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Education</h2>
+          <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <p><strong>2022 - 2025:</strong> Bachelor of Computer Applications, Maharaja Krushnakumarsihji University (Current CGPA: 8.5)</p>
+    <p><strong>2023:</strong> Graphic Design Certification, Aram Studio</p>
+    <p><strong>2024:</strong> Game Development Certification, Oengine Game Development</p>
+    <p><strong>2022:</strong> 12th Commerce, Gujarat Secondary Education Board (Percentage: 76%)</p>
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Skills</h2>
+          <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <div class="skills-container">
+      <div class="skill-item">
+        <div class="skill-icon-container">
+          <img class="skill-icon photoshop-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg" alt="Photoshop">
+        </div>
+        <span class="skill-name">Photoshop</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon-container">
+          <img class="skill-icon illustrator-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg" alt="Illustrator">
+        </div>
+        <span class="skill-name">Illustrator</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon-container">
+          <img class="skill-icon coreldraw-icon" src="https://images.seeklogo.com/logo-png/50/1/coreldraw-logo-png_seeklogo-500400.png" alt="CorelDRAW">
+        </div>
+        <span class="skill-name">CorelDRAW</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon-container">
+          <img class="skill-icon figma-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+        </div>
+        <span class="skill-name">Figma</span>
+      </div>
+      <div class="skill-item">
+        <div class="skill-icon-container">
+          <img class="skill-icon premierepro-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/premierepro/premierepro-plain.svg" alt="Premiere Pro">
+        </div>
+        <span class="skill-name">Premiere Pro</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="interests">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Interests</h2>
+          <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <p style="text-align: center;">Digital Art, Game Design, Photography, Branding, UI/UX Design, Creative Problem Solving</p>
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Experience</h2>
+          <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <p><strong>2023:  </strong>   Graphic Design Intern at Aram Studio (mahuva )</p>
+    <p><strong>2023-2024  </strong>  swaminarayn madir mahuva (bhavnager) </p>
+    <p><strong>12-2024 : (06-2025) </strong>  imginen art & print (surat) </p>
+  </section>
+
+  <section class="projects">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>My Projects</h2>
+         <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+      <div style="text-align: center;">
+        <a href="#branding" class="project-button">Branding</a>
+        <a href="#social-media" class="project-button">Digital Art</a>
+        <a href="#ux-ui" class="project-button">UI/UX</a>
+      </div>
+  </section>
+
+  <section id="branding" class="branding">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Branding Projects</h2>
+          <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <div class="project-grid">
+      <div class="polaroid">
+        <img src="work/Photoshop/123.png" alt="solar Branding">
+      </div>
+      <div class="polaroid">
+        <img src="work/Photoshop/ivf.png" alt="ivf Branding">
+      </div>
+      <div class="polaroid">
+        <img src="work/Photoshop/2.jpg" alt="sun icscirm">
+      </div>
+    </div>
+  </section>
+
+  <section id="social-media" class="social-media">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Digital Art</h2>
+          <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <div class="project-grid">
+      <div class="polaroid">
+        <img src="work/illustrator/01.png" alt="Game Character">
+      </div>
+      <div class="polaroid">
+        <img src="work/illustrator/02.png" alt="Nature Lighting">
+      </div>
+      <div class="polaroid">
+          <img src="work/illustrator/03.png" alt="Illustration 2">
+      </div>
+      <div class="polaroid">
+        <img src="work/illustrator/04.png" alt="Photo Manipulation">
+      </div>
+    </div>
+  </section>
+
+  <section id="ux-ui" class="ux-ui">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>UI/UX Projects</h2>
+        <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+        <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+      </div>
+    </div>
+    <div class="image-grid">
+      <div class="polaroid">
+        <img src="work/Photoshop/snakegame.png" alt="App Design">
+      </div>
+      <div class="polaroid">
+        <img src="work/Photoshop/snake 2.png" alt="Website Layout">
+      </div>
+    </div>
+  </section>
+
+
+  <section class="contact">
+    <div class="section-header">
+      <div class="title-box">
+        <h2>Contact Me</h2>
+      <div class="ball" style="top: 10px; left: 20px; animation: floatRandom1 3s infinite linear;"></div>
+      <div class="ball" style="bottom: 15px; right: 25px; animation: floatRandom2 4s infinite linear;"></div>
+     </div>
+    </div>
+    <div class="contact-info">
+      <p><strong>Phone:</strong> +91 9316550878</p>
+      <p><strong>Email:</strong> jaimishkachhadiya73@gmail.com></p>
+      <p><strong>Alternate Email:</strong> jaimish.designs@gmail.com</p>
+      <p><strong>Instagram:</strong> <a class="project-button" href="https://www.instagram.com/mr.kachhadiya73?igsh=cGpqdm42ajd0ZnU0">@mr.kachhadiya73</a></p>
+      <p><strong>WhatsApp:</strong> <a class="project-button" href="https://wa.me/919316550878">+91 9316550878</a></p>
+    </div>
+  </section>
+
+  <section class="thank-you">
+    <h2>THANK YOU</h2>
+  </section>
+</body>
+
+</html>
